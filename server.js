@@ -1,12 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { Pool } from 'pg';
+import pkg from 'pg';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const pgConnect = `postgres://mharlow9:3l5kE8Jb0vSPPeWFYANqyQM1oJEZldeq@dpg-cnef407109ks738v8h30-a/harlowdb`
-
+const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
