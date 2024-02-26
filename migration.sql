@@ -6,14 +6,14 @@ CREATE TABLE Workouts (
     workout_id SERIAL PRIMARY KEY,
     date DATE,
     notes TEXT
-)
+);
 
 CREATE TABLE Exercises (
     exercise_id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     category TEXT,
     description TEXT
-)
+);
 
 CREATE TABLE WorkoutExercises (
     workout_id INT,
@@ -25,5 +25,5 @@ CREATE TABLE WorkoutExercises (
     FOREIGN KEY (workout_id) REFERENCES Workouts(workout_id),
     FOREIGN KEY (exercise_id) REFERENCES Exercises(exercise_id)
 
-)
+);
 
