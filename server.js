@@ -36,7 +36,7 @@ app.get('/api/workouts/', async (req, res, next) => {
 app.get('/api/workouts/:workoutId', async (req, res, next) => {
     const workoutId = Number.parseInt(req.params.workoutId);
     console.log("Getting workout at id: ", workoutId);
-    const workoutQuery = `SELECT * FROM Workouts WHERE id = $1`;
+    const workoutQuery = `SELECT * FROM Workouts WHERE workout_id = $1`;
     try {
         const data = await pool.query(workoutQuery, [workoutId]);
         console.log(data.rows);
