@@ -4,6 +4,8 @@ const exerciseRouter = express.Router();
 
 // Get all exercises
 exerciseRouter.get('/', async (req, res) => {
+    // Access pool from request object
+    const pool = req.app.get('pool');
     console.log("Getting all exercises");
     const exerciseQuery = `SELECT * FROM Exercises`;
     try {
@@ -18,6 +20,8 @@ exerciseRouter.get('/', async (req, res) => {
 
 // Get one exercise
 exerciseRouter.get('/:exerciseId', async (req, res) => {
+    // Access pool from request object
+    const pool = req.app.get('pool');
     const exerciseId = Number.parseInt(req.params.exerciseId);
     console.log("Getting exercise at id: ", exerciseId);
     const exerciseQuery = `SELECT * FROM Exercises WHERE exercise_id = $1`;
@@ -37,6 +41,8 @@ exerciseRouter.get('/:exerciseId', async (req, res) => {
 
 // Post new exercise
 exerciseRouter.post('/', async (req, res) => {
+    // Access pool from request object
+    const pool = req.app.get('pool');
     const { name, category, description } = req.body;
     console.log(`Creating exercise with name: ${name}`);
     try {
@@ -52,6 +58,8 @@ exerciseRouter.post('/', async (req, res) => {
 
 // Update exercise information
 exerciseRouter.patch('/:exerciseId', async (req, res) => {
+    // Access pool from request object
+    const pool = req.app.get('pool');
     const exerciseId = Number.parseInt(req.params.exerciseId);
     const { name, category, description } = req.body;
     if (Number.isNaN(exerciseId)) {
@@ -64,7 +72,7 @@ exerciseRouter.patch('/:exerciseId', async (req, res) => {
             name = COALESCE($1, name),
             category = COALESCE($2, category),
             description = COALESCE($3, description)
-        WHERE id = $4 RETURNING *`;
+        WHERE exercise_id = $4 RETURNING *`;
     try {
         const data = await pool.query(exerciseQuery, [name, category, description, exerciseId]);
         // If no data returns, send back 404
@@ -81,7 +89,10 @@ exerciseRouter.patch('/:exerciseId', async (req, res) => {
     }
 });
 
+// Delete exercise from Exercises table
 exerciseRouter.delete('/:exerciseId', async (req, res) => {
+    // Access pool from request object
+    const pool = req.app.get('pool');
     const exerciseId = Number.parseInt(req.params.exerciseId);
     if (Number.isNaN(exerciseId)) {
         res.sendStatus(400);
@@ -89,16 +100,18 @@ exerciseRouter.delete('/:exerciseId', async (req, res) => {
     }
     console.log("Deleting exercise with id: ", exerciseId);
     try {
-        const data = await pool.query(`DELETE FROM Exercises WHERE id $1 RETURNING *`, [exerciseId]);
+        const data = await pool.query(`DELETE FROM Exercises WHERE exercise_id = $1 RETURNING *`, [exerciseId]);
         if (data.rows.length === 0) {
-            console.log("No student found with that id");
+            console.log("No exercise found with that id");
             res.sendStatus(404);
         } else {
-            console.log("Deleted student: \n", data.rows[0]);
+            console.log("Deleted exercise: \n", data.rows[0]);
             res.json(data.rows[0]);
         }
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
     }
-})
+});
+
+export default exerciseRouter;

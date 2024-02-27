@@ -1,10 +1,11 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import pkg from 'pg';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import workoutRouter from './routes/workoutRouter.js';
 import exerciseRouter from './routes/exerciseRouter.js';
+import workoutExerciseRouter from './routes/workoutExerciseRouter.js';
 
 dotenv.config();
 
@@ -14,16 +15,23 @@ const { Pool } = pkg;
 const app = express();
 const port = 3000;
 
+
 const pool = new Pool({
     connectionString: pgConnectLocal,
 });
 
 // Middleware
+app.use(cors());
 app.use(express.static("public"));
 app.use(express.json())
+
+app.set('pool', pool);
+
+// Middleware
 app.use('/api/workouts', workoutRouter);
 app.use('/api/exercises', exerciseRouter);
+app.use('/api/workout-details', workoutExerciseRouter);
 
 app.listen(port, () => {
     console.log("Listening on port: ", port);
-})
+});
