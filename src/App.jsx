@@ -1,34 +1,32 @@
+// Import hooks, context provider, CSS styling
 import { useState, useEffect } from 'react';
+import { AppProvider, useAppContext } from './components/AppContext';
 import './App.css'
+
+// Import components
 import Home from './components/Home';
+import ExerciseList from './components/ExerciseList';
+import ExerciseDetails from './components/ExerciseDetails';
 
+// AppContent component will choose which component to render based on the currentPage
+const AppContent = () => {
+  const { currentPage } = useAppContext();
+  
+  return (
+    <div>
+      {currentPage === 'home' && <Home />}
+      {currentPage === 'exercise-list' && <ExerciseList />}
+      {currentPage === 'exercise-details' && <ExerciseDetails />}
+    </div>
+  )
+}
+// App component wraps selected components in AppProvider
 const App = () => {
-  const [exerciseList, setExerciseList] = useState([]);
-  const [currentExercise, setCurrentExercise] = useState({});
-
-  useEffect(() => {
-    const getExerciseList = async () => {
-      const res = await fetch('http://localhost:3000/api/exercises/')
-      const data = await res.json()
-      console.log(data);
-      setExerciseList(data);
-    }
-    getExerciseList()
-  }, []);
-
-  const getSingleExercise = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/exercises/${id}`)
-    const data = await res.json()
-    setCurrentExercise(data)
-  }
-
-
   return (
     <>
-      <Home 
-        exerciseList={exerciseList}
-        getSingleExercise={getSingleExercise} 
-      />
+      <AppProvider>
+        <AppContent />
+      </AppProvider>
     </>
   )
 }
