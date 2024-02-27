@@ -24,6 +24,5 @@ CREATE TABLE WorkoutExercises (
     PRIMARY KEY (workout_id, exercise_id),
     FOREIGN KEY (workout_id) REFERENCES Workouts(workout_id),
     FOREIGN KEY (exercise_id) REFERENCES Exercises(exercise_id)
-
 );
 
