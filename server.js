@@ -24,9 +24,15 @@ const pool = new Pool({
 });
 
 // Middleware
-app.use(cors());
-app.use(express.static("public"));
-app.use(express.json())
+app.use(
+    express.json(),
+    express.static('dist'),
+    cors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+        allowedHeaders: ['Authorization', 'Content-Type']
+    })
+);
 
 app.set('pool', pool);
 
