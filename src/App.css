@@ -18,21 +18,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
 .card {
   padding: 2em;
 }
@@ -40,3 +25,126 @@
 .read-the-docs {
   color: #888;
 }
+
+.exerciseRound {
+  border: 2px solid #8788a4;
+  padding: 5px;
+  margin: 8px;
+  position: relative; /* Set position relative on the container */
+  width: 500px;
+}
+
+.dropdown-container {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-select {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  width: 150px; /* Set the width according to your design */
+}
+
+dropdown-select:focus + .dropdown-options {
+  display: block;
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  border: 1px solid #ccc;
+  width: 150px; /* Set the width according to your design */
+}
+
+.dropdown-options option {
+  padding: 10px;
+  text-align: center;
+}
+
+.roundTemplate {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns for Sets, Reps, and Weight */
+  grid-template-rows: auto; /* Auto-sized rows */
+  grid-gap: 10px;
+  text-align: center;
+}
+
+.columnHeading {
+  font-weight: bold;
+}
+
+.setContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  text-align: center;
+  padding: 15px;
+}
+
+.selectedExercise {
+  grid-column: span 3; /* Span across all three columns */
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px; /* Set a specific height for vertical centering */
+}
+
+.set,
+.reps,
+.weight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Set a specific height for vertical centering */}
+
+.reps input::placeholder,
+.weight input::placeholder {
+  text-align: center;
+}
+
+.reps input,
+.weight input {
+  width: 50px; /* Adjust the width based on your preferred size */
+  padding: 5px; /* Adjust the padding for spacing inside the input box */
+  /* Add any additional styling as needed */
+}
+
+.startWorkoutButton {
+  margin: 20px;
+}
+
+.newSetButton {
+  width: 120px;
+  margin: 10px;
+  margin-left: px;
+  font-size: small;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.addExerciseButton {
+  width: 120px;
+  margin: 10px;
+  font-size: small;
+}
+
+.centerText {
+  text-align: center;
+}
+
+/* Optional: Center the content vertically within the drop-down */
+.centerText select {
+  padding: 10px; /* Adjust the padding based on your design */
+  box-sizing: border-box;
+}
+
+/* Add any additional styling as needed */
+
