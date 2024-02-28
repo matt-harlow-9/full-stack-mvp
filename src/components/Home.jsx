@@ -1,13 +1,13 @@
-import Workout from './Workout';
-import ExerciseList from './ExerciseList';
+import React from 'react';
+import { useAppContext } from './AppContext';
 
-const Home = (props) => {
-    
-
-    
+const Home = () => {
+    const { navigateToPage, startNewWorkout } = useAppContext();
     return (
         <div>
-            <ExerciseList exerciseList={props.exerciseList}/>
+            <h1>Galvanize Workout Tracker</h1>
+            <button className='startWorkoutButton' onClick={() => startNewWorkout('workout')}>Start New Workout</button>
+            <button onClick={() => navigateToPage('exerciseList')}>Exercise List</button>
         </div>
     )
 }
