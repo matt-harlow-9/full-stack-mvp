@@ -10,7 +10,7 @@ const ExerciseDetails = () => {
     } = useAppContext();
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/exercises/${selectedExerciseId}`)
+        fetch(`https://full-stack-mvp.onrender.com/api/exercises/${selectedExerciseId}`)
             .then((res) => res.json())
             .then((data) => {
                 setSelectedExerciseDetails(data[0]);
