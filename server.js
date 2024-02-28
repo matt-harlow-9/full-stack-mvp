@@ -13,11 +13,14 @@ const pgConnect = `postgres://mharlow9:3l5kE8Jb0vSPPeWFYANqyQM1oJEZldeq@dpg-cnef
 const pgConnectLocal = `postgres://postgres:postgres@localhost:6432/postgres`
 const { Pool } = pkg;
 const app = express();
-const port = 3000;
+const port = 10000;
 
 
 const pool = new Pool({
     connectionString: pgConnect,
+    ssl: {
+        rejectUnauthorized: false, // Only use this in development
+    }
 });
 
 // Middleware
