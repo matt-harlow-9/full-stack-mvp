@@ -7,17 +7,19 @@ import './App.css'
 import Home from './components/Home';
 import ExerciseList from './components/ExerciseList';
 import ExerciseDetails from './components/ExerciseDetails';
+import Workout from './components/Workout';
 
 // AppContent component will choose which component to render based on the currentPage
 const AppContent = () => {
   const { currentPage } = useAppContext();
   
   return (
-    <div>
+    <>
       {currentPage === 'home' && <Home />}
-      {currentPage === 'exercise-list' && <ExerciseList />}
-      {currentPage === 'exercise-details' && <ExerciseDetails />}
-    </div>
+      {currentPage === 'exerciseList' && <ExerciseList />}
+      {currentPage === 'exerciseDetails' && <ExerciseDetails />}
+      {currentPage === 'workout' && <Workout />}
+    </>
   )
 }
 // App component wraps selected components in AppProvider
