@@ -9,7 +9,7 @@ import workoutExerciseRouter from './routes/workoutExerciseRouter.js';
 
 dotenv.config();
 
-//const pgConnect = `postgres://mharlow9:3l5kE8Jb0vSPPeWFYANqyQM1oJEZldeq@dpg-cnef407109ks738v8h30-a/harlowdb`
+const pgConnect = `postgres://mharlow9:3l5kE8Jb0vSPPeWFYANqyQM1oJEZldeq@dpg-cnef407109ks738v8h30-a/harlowdb`
 const pgConnectLocal = `postgres://postgres:postgres@localhost:6432/postgres`
 const { Pool } = pkg;
 const app = express();
@@ -17,7 +17,7 @@ const port = 3000;
 
 
 const pool = new Pool({
-    connectionString: pgConnectLocal,
+    connectionString: pgConnect,
 });
 
 // Middleware
