@@ -33,7 +33,7 @@ const ExerciseRound = () => {
             weight: sets[sets.length - 1].weight
         }
         try {
-            const res = await axios.post('http://localhost:3000/api/workout-details', formData);
+            const res = await axios.post('https://full-stack-mvp.onrender.com/api/workout-details', formData);
             if (res.status === 200) {
                 console.log('Exercise submitted successfully')
             } else {

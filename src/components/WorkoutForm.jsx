@@ -21,7 +21,7 @@ const WorkoutForm = () => {
     // Fetch exercise names for use in drop down menu
     useEffect(() => {
         // Fetch, convert to JSON, create array of all exercise info
-        fetch('http://localhost:3000/api/exercises')
+        fetch('https://full-stack-mvp.onrender.com/api/exercises')
             .then((res) => res.json())
             .then((data) => {
                 setAllExerciseInfo(data);
