@@ -4,7 +4,7 @@ import { useAppContext } from './AppContext';
 const ExerciseList = () => {
     const { navigateToPage, exerciseNameList, setExerciseNameList } = useAppContext();
     useEffect(() => {
-        fetch('http://localhost:3000/api/exercises')
+        fetch('https://full-stack-mvp.onrender.com/api/exercises')
             .then((res) => res.json())
             .then((data) => {
                 const names = data.map((exercise) => exercise.name);

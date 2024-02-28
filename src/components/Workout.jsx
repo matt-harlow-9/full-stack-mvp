@@ -11,6 +11,7 @@ const Workout = () => {
         <>
             <h2>New Workout</h2>
             <WorkoutForm key={workoutForm.formId} />
+            <button className="homeButton" onClick={() => navigateToPage('home')}>Home</button>
         </>
     )
 }
